@@ -32,7 +32,7 @@ const tailFormItemLayout = {
 }
 
 function registrationSuccessNotification(history) {
-  Modal.info({
+  Modal.success({
     title: 'Registration Success',
     content: (
       <div>
