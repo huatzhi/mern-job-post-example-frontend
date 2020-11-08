@@ -1,12 +1,12 @@
-import { Menu, PageHeader } from 'antd'
+import { Menu } from 'antd'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import { LOGOUT } from '../../store/auth/auth.actions'
 
-import './Header.styles.css'
+import './TopMenu.styles.css'
 
-const Header = ({ selectedKey = 'Create Job' }) => {
+const TopMenu = ({ selectedKey = 'Create Job' }) => {
   const dispatch = useDispatch()
   const history = useHistory()
   const logout = () => {
@@ -27,4 +27,4 @@ const Header = ({ selectedKey = 'Create Job' }) => {
   )
 }
 
-export default Header
+export default TopMenu
