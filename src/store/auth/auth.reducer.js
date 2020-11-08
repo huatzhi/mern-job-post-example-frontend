@@ -1,16 +1,24 @@
 import authTypes from "./auth.types";
+import store from "store";
+
+const previousAuth = store.get('auth')
 
 const initialState = {
-  token: null,
-  name: null
+  token: previousAuth && previousAuth.token ? previousAuth.token : null,
+  name: previousAuth && previousAuth.name ? previousAuth.name : null
 };
 
 const authReducer = (state = initialState, action) => {
+  let newState;
   switch (action.type) {
     case authTypes.LOGIN_SUCCESS:
-      return { ...state, token: action.token, name: action.name };
+      newState = { ...state, token: action.token, name: action.name };
+      store.set('auth', newState);
+      return state;
     case authTypes.LOGOUT:
-      return { ...state, token: null, name: null };
+      newState = { ...state, token: null, name: null };
+      store.set('auth', newState);
+      return newState;
     default:
       return state;
   }
