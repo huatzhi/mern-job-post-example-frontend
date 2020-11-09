@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, List } from 'antd'
+import { Button, List, Popconfirm } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import { SHOW_JOB_DETAIL } from '../../store/jobDetails/jobDetails.actions'
 import JobDrawer from '../JobDrawer/JobDrawer.component'
@@ -31,14 +31,16 @@ const JobList = ({ recruiterList }) => {
 
     if (recruiterList) {
       listAction.push(
-        <Button
-          type="danger"
-          onClick={() => {
+        <Popconfirm
+          title="Are you sure delete this job?"
+          onConfirm={() => {
             closeJobButtonClicked(item)
           }}
+          okText="Yes"
+          cancelText="No"
         >
-          Close
-        </Button>
+          <Button type="danger">Close</Button>
+        </Popconfirm>
       )
     }
 

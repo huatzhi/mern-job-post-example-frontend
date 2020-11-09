@@ -37,6 +37,10 @@ export const closeJob = jobObjId => {
   return async dispatch => {
     try {
       await requests.post('/job/close', { jobObjId })
+      notification.success({
+        message: `Job Deleted!`,
+        placement: 'bottomLeft',
+      })
     } catch (e) {
       let errorMsg = 'Unknown Error'
       if (e && e.response && e.response.data && e.response.data.message) {
