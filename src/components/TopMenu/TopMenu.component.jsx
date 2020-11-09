@@ -19,7 +19,9 @@ const TopMenu = ({ selectedKey = 'Create Job' }) => {
       <Menu.Item key="Create Job">
         <Link to="/recruiter/create-job">Create Job</Link>
       </Menu.Item>
-      <Menu.Item key="Job List">Job List</Menu.Item>
+      <Menu.Item key="Job List">
+        <Link to="/recruiter/job-list">Job List</Link>
+      </Menu.Item>
       <Menu.Item style={{ float: 'right' }} onClick={logout}>
         Logout
       </Menu.Item>

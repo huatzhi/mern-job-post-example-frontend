@@ -1,11 +1,12 @@
 import React from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import UserTypePage from './pages/UserTypePage/UserTypePage.component';
 import RecruiterRegistrationPage from './pages/RecruiterRegistrationPage/RecruiterRegistrationPage.component';
 import RecruiterLoginPage from './pages/RecruiterLoginPage/RecruiterLoginPage.component';
 import CreateJobPage from './pages/CreateJobPage/CreateJobPage.component';
-import { useSelector } from 'react-redux';
+import RecruiterJobListPage from './pages/RecruiterJobListPage/RecruiterJobListPage.component';
 
 
 
@@ -25,6 +26,7 @@ function App() {
             ) : (
               <>
                 <Route path="/recruiter/create-job" component={CreateJobPage} />
+                <Route path="/recruiter/job-list" component={RecruiterJobListPage} />
 
               </>
             )
