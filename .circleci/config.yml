@@ -7,4 +7,5 @@ jobs:
       - checkout
       - run: echo "yarn installing"
       - run: yarn
-      - run: yarn build
+      - run: echo "yarn run build"
+      - run: yarn run build
