@@ -3,7 +3,7 @@ import { Col, Divider, Drawer, Row } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 
 import './JobDrawer.styles.css'
-import DescriptionItem from '../../DescriptionItem/DescriptionItem.component'
+import DescriptionItem from '../DescriptionItem/DescriptionItem.component'
 import { HIDE_JOB_DETAIL } from '../../store/jobDetails/jobDetails.actions'
 
 const JobDrawer = () => {
