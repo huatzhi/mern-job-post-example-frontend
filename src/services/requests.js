@@ -1,17 +1,33 @@
 import axios from 'axios';
 import config from '../config';
+import store from "../store/store";
 
-// todo :: add bearer token if login
+function getToken() {
+  const state = store.getState();
+  return state.auth.token;
+}
 
 const requests = {
   get: async (path, query = {}) => {
-    const res = await axios.get(`${config.api_uri}${path}`, { params: query });
+    const token = getToken();
+
+    let axiosConfig = { params: query };
+    if (token) {
+      axiosConfig.headers = { Authorization: token };
+    }
+
+    const res = await axios.get(`${config.api_uri}${path}`, axiosConfig);
     return res;
   },
   post: async (path, body = {}) => {
-    console.log('config.api_uri', config.api_uri)
-    console.log('path', path)
-    const res = await axios.post(`${config.api_uri}${path}`, body);
+    const token = getToken();
+
+    let axiosConfig = {};
+    if (token) {
+      axiosConfig.headers = { Authorization: token };
+    }
+
+    const res = await axios.post(`${config.api_uri}${path}`, body, axiosConfig);
     return res;
   },
 }

@@ -58,7 +58,7 @@ const LoginForm = () => {
   return (
     <Form
       {...layout}
-      name="basic"
+      name="Login"
       initialValues={{ remember: true }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}

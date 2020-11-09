@@ -1,5 +1,6 @@
 import { Layout } from 'antd'
 import React from 'react'
+import CreateJobForm from '../../components/CreateJobForm/CreateJobForm.component'
 
 import TopMenu from '../../components/TopMenu/TopMenu.component'
 
@@ -11,11 +12,11 @@ const CreateJobPage = () => {
   return (
     <Layout className="layout" style={{ minHeight: '100vh' }}>
       <Header>
-        <TopMenu />
+        <TopMenu selectedKey="Create Job" />
       </Header>
       <Content style={{ padding: '0 50px' }}>
         <div className="site-layout-content">
-          <span>OK!</span>
+          <CreateJobForm />
         </div>
       </Content>
       <Footer style={{ textAlign: 'center' }}>
