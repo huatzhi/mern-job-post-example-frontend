@@ -3,13 +3,46 @@ import { Button, List } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import { SHOW_JOB_DETAIL } from '../../store/jobDetails/jobDetails.actions'
 import JobDrawer from '../JobDrawer/JobDrawer.component'
+import { closeJob } from '../../store/joblist/joblist.actions'
 
-const RecruiterJobList = () => {
+const JobList = ({ recruiterList }) => {
   const dataSource = useSelector((state) => state.job.list)
   const dispatch = useDispatch()
 
   const showJob = (item) => {
     dispatch(SHOW_JOB_DETAIL(item))
+  }
+
+  const closeJobButtonClicked = (item) => {
+    dispatch(closeJob(item._id))
+  }
+
+  const getListActions = (item) => {
+    let listAction = [
+      <Button
+        type="link"
+        onClick={() => {
+          showJob(item)
+        }}
+      >
+        View Job
+      </Button>,
+    ]
+
+    if (recruiterList) {
+      listAction.push(
+        <Button
+          type="danger"
+          onClick={() => {
+            closeJobButtonClicked(item)
+          }}
+        >
+          Close
+        </Button>
+      )
+    }
+
+    return listAction
   }
 
   return (
@@ -18,19 +51,7 @@ const RecruiterJobList = () => {
         dataSource={dataSource}
         bordered
         renderItem={(item) => (
-          <List.Item
-            key={item.id}
-            actions={[
-              <Button
-                type="link"
-                onClick={() => {
-                  showJob(item)
-                }}
-              >
-                View Job
-              </Button>,
-            ]}
-          >
+          <List.Item key={item.id} actions={getListActions(item)}>
             <List.Item.Meta
               title={item.title}
               description={`${item.recruiterName || ''} - ${
@@ -45,4 +66,4 @@ const RecruiterJobList = () => {
   )
 }
 
-export default RecruiterJobList
+export default JobList
