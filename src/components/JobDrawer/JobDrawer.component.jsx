@@ -16,50 +16,48 @@ const JobDrawer = () => {
 
   return (
     <>
-      {show ? (
-        <Drawer
-          width={640}
-          placement="right"
-          closable={false}
-          onClose={onClose}
-          visible={show}
+      <Drawer
+        width={640}
+        placement="right"
+        closable={true}
+        onClose={onClose}
+        visible={show}
+      >
+        <p
+          className="site-description-item-profile-p"
+          style={{ marginBottom: 24 }}
         >
-          <p
-            className="site-description-item-profile-p"
-            style={{ marginBottom: 24 }}
-          >
-            <h2>{job.title}</h2>
-          </p>
-          <Row>
-            <Col span={12}>
-              <DescriptionItem
-                title="Recruiter Name"
-                content={job.recruiterName}
-              />
-            </Col>
-            <Col span={12}>
-              <DescriptionItem title="Location" content={job.location} />
-            </Col>
-          </Row>
-          <Divider />
-          <p className="site-description-item-profile-p">Job Description</p>
-          <Row>
-            <Col span={24}>
-              <DescriptionItem content={job.description} />
-            </Col>
-          </Row>
+          <h2>{job.title}</h2>
+        </p>
+        <Row>
+          <Col span={12}>
+            <DescriptionItem
+              title="Recruiter Name"
+              content={job.recruiterName}
+            />
+          </Col>
+          <Col span={12}>
+            <DescriptionItem title="Location" content={job.location} />
+          </Col>
+        </Row>
+        <Divider />
+        <p className="site-description-item-profile-p">Job Description</p>
+        <Row>
+          <Col span={24}>
+            <DescriptionItem content={job.description} />
+          </Col>
+        </Row>
 
-          <Divider />
-          <Row>
-            <Col span={24}>
-              <DescriptionItem
-                title="Job Post Date"
-                content={job.createdAt ? String(new Date(job.createdAt)) : '-'}
-              />
-            </Col>
-          </Row>
-        </Drawer>
-      ) : null}
+        <Divider />
+        <Row>
+          <Col span={24}>
+            <DescriptionItem
+              title="Job Post Date"
+              content={job.createdAt ? String(new Date(job.createdAt)) : '-'}
+            />
+          </Col>
+        </Row>
+      </Drawer>
     </>
   )
 }

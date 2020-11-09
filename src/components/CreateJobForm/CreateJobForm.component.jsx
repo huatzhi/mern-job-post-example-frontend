@@ -1,11 +1,16 @@
 import React from 'react'
-import { Form, Input, Button, notification } from 'antd'
+import { Form, Input, Button, notification, Space } from 'antd'
 
 import './CreateJobForm.styles.css'
 import requests from '../../services/requests'
+import { useDispatch, useSelector } from 'react-redux'
+import { SHOW_JOB_DETAIL } from '../../store/jobDetails/jobDetails.actions'
+import JobDrawer from '../JobDrawer/JobDrawer.component'
 
 const CreateJobForm = () => {
   const [form] = Form.useForm()
+  const dispatch = useDispatch()
+  const { name } = useSelector((state) => state.auth)
 
   const onFinish = async (formData) => {
     console.log('formData', formData)
@@ -29,6 +34,12 @@ const CreateJobForm = () => {
         placement: 'bottomLeft',
       })
     }
+  }
+
+  const preview = () => {
+    let job = form.getFieldsValue()
+    job.recruiterName = name
+    dispatch(SHOW_JOB_DETAIL(job))
   }
 
   return (
@@ -58,12 +69,20 @@ const CreateJobForm = () => {
             rows={20}
           />
         </Form.Item>
-        <Form.Item>
-          <Button type="primary" htmlType="submit">
-            Submit
-          </Button>
-        </Form.Item>
+        <Space size="middle">
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              Submit
+            </Button>
+          </Form.Item>
+          <Form.Item>
+            <Button type="secondary" onClick={preview}>
+              Preview
+            </Button>
+          </Form.Item>
+        </Space>
       </Form>
+      <JobDrawer />
     </>
   )
 }
