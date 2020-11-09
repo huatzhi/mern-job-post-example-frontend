@@ -16,6 +16,9 @@ const TopMenu = ({ selectedKey = 'Create Job' }) => {
 
   return (
     <Menu theme="dark" mode="horizontal" defaultSelectedKeys={selectedKey}>
+      <Menu.Item key="Home">
+        <Link to="/">Home</Link>
+      </Menu.Item>
       <Menu.Item key="Create Job">
         <Link to="/recruiter/create-job">Create Job</Link>
       </Menu.Item>

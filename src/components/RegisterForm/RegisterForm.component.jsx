@@ -1,10 +1,19 @@
 import React from 'react'
-import { Button, Form, Input, Tooltip, Modal, notification } from 'antd'
+import {
+  Button,
+  Form,
+  Input,
+  Tooltip,
+  Modal,
+  notification,
+  Row,
+  Col,
+} from 'antd'
 import { QuestionCircleOutlined } from '@ant-design/icons'
 
 import './RegisterForm.styles.css'
 import requests from '../../services/requests'
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 // styles constants
 const formItemLayout = {
@@ -106,7 +115,7 @@ const RegisterForm = () => {
 
       <Item
         name="email"
-        label="E-mail"
+        label="Email"
         rules={[
           {
             type: 'email',
@@ -167,6 +176,21 @@ const RegisterForm = () => {
           Register
         </Button>
       </Item>
+      <Row justify="center">
+        <Col span={24}>
+          Already have an account?{' '}
+          <Button type="link">
+            <Link to="/recruiter/login">Login Here</Link>
+          </Button>
+        </Col>
+      </Row>
+      <Row justify="center">
+        <Col span={24}>
+          <Button type="link">
+            <Link to="/">Back To Home</Link>
+          </Button>
+        </Col>
+      </Row>
     </Form>
   )
 }

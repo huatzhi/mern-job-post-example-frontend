@@ -18,24 +18,19 @@ function App() {
       <Switch>
         <Route exact path="/" component={UserTypePage} />
         <Route path="/candidate" component={CandidatePage} />
-        {
-          !isLogin ?
-            (
-              <>
-                <Route path="/recruiter/register" component={RecruiterRegistrationPage} />
-                <Route path="/recruiter/login" component={RecruiterLoginPage} />
-                <Redirect to="/recruiter/login" />
-              </>
-            ) : (
-              <>
-                <Route path="/recruiter/create-job" component={CreateJobPage} />
-                <Route path="/recruiter/job-list" component={RecruiterJobListPage} />
-                <Redirect to="/recruiter/job-list" />
-              </>
-            )
-        }
-
-
+        <Route path="/recruiter/register" render={() => (
+          !isLogin ? <RecruiterRegistrationPage /> : <Redirect to="/recruiter/job-list" />
+        )} />
+        <Route path="/recruiter/login" render={() => (
+          !isLogin ? <RecruiterLoginPage /> : <Redirect to="/recruiter/job-list" />
+        )} />
+        <Route path="/recruiter/create-job" render={() => (
+          isLogin ? <CreateJobPage /> : <Redirect to="/recruiter/login" />
+        )} />
+        <Route path="/recruiter/job-list" render={() => (
+          isLogin ? <RecruiterJobListPage /> : <Redirect to="/recruiter/login" />
+        )} />
+        <Route path="/" component={(() => (<Redirect to="/" />))} />
       </Switch>
     </div>
   );

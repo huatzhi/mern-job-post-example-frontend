@@ -14,7 +14,7 @@ const authReducer = (state = initialState, action) => {
     case authTypes.LOGIN_SUCCESS:
       newState = { ...state, token: action.token, name: action.name };
       store.set('auth', newState);
-      return state;
+      return newState;
     case authTypes.LOGOUT:
       newState = { ...state, token: null, name: null };
       store.set('auth', newState);

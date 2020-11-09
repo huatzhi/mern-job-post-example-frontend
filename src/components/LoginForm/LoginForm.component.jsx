@@ -1,10 +1,10 @@
 import React from 'react'
-import { Form, Input, Button, Modal } from 'antd'
+import { Form, Input, Button, Modal, Row, Col } from 'antd'
 import './LoginForm.styles.css'
 import { useDispatch } from 'react-redux'
 
 import requests from '../../services/requests'
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { LOGIN_SUCCESS } from '../../store/auth/auth.actions'
 
 // styles
@@ -56,41 +56,58 @@ const LoginForm = () => {
   }
 
   return (
-    <Form
-      {...layout}
-      name="Login"
-      initialValues={{ remember: true }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-    >
-      <Form.Item
-        label="Email"
-        name="email"
-        rules={[
-          { required: true, message: 'Please input your email!' },
-          {
-            type: 'email',
-            message: 'Must be a valid email address!',
-          },
-        ]}
+    <>
+      <Form
+        {...layout}
+        name="Login"
+        initialValues={{ remember: true }}
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
       >
-        <Input />
-      </Form.Item>
+        <Form.Item
+          label="Email"
+          name="email"
+          rules={[
+            { required: true, message: 'Please input your email!' },
+            {
+              type: 'email',
+              message: 'Must be a valid email address!',
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
 
-      <Form.Item
-        label="Password"
-        name="password"
-        rules={[{ required: true, message: 'Please input your password!' }]}
-      >
-        <Input.Password />
-      </Form.Item>
+        <Form.Item
+          label="Password"
+          name="password"
+          rules={[{ required: true, message: 'Please input your password!' }]}
+        >
+          <Input.Password />
+        </Form.Item>
 
-      <Form.Item {...tailLayout}>
-        <Button type="primary" htmlType="submit">
-          Login
-        </Button>
-      </Form.Item>
-    </Form>
+        <Form.Item {...tailLayout}>
+          <Button type="primary" htmlType="submit">
+            Login
+          </Button>
+        </Form.Item>
+        <Row justify="center">
+          <Col span={24}>
+            Do not have account?{' '}
+            <Button type="link">
+              <Link to="/recruiter/register">Register Here</Link>
+            </Button>
+          </Col>
+        </Row>
+        <Row justify="center">
+          <Col span={24}>
+            <Button type="link">
+              <Link to="/">Back To Home</Link>
+            </Button>
+          </Col>
+        </Row>
+      </Form>
+    </>
   )
 }
 
