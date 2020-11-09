@@ -14,9 +14,11 @@ const UserTypePage = () => {
       className="full-vh"
     >
       <Col span={11}>
-        <Button className="user-type-button full-screen-row">
-          <span>Candidate</span>
-        </Button>
+        <Link to="/candidate">
+          <Button className="user-type-button full-screen-row">
+            <span>Candidate</span>
+          </Button>
+        </Link>
       </Col>
       <Col span={11}>
         <Link to="/recruiter/register">

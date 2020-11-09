@@ -33,6 +33,29 @@ export const getRecruiterList = () => {
   }
 }
 
+export const getList = () => {
+  return async dispatch => {
+    try {
+      const getjob = await requests.get('/job')
+      const jobs = getjob.data || []
+      dispatch(SET_JOBS(jobs))
+    } catch (e) {
+      let errorMsg = 'Unknown Error'
+      if (e && e.response && e.response.data && e.response.data.message) {
+        errorMsg = e.response.data.message
+      } else {
+        console.error('Login error', e)
+      }
+      notification.error({
+        message: `Get Job Error`,
+        description: errorMsg,
+        placement: 'bottomLeft',
+      })
+      dispatch(SET_JOBS([]))
+    }
+  }
+}
+
 export const closeJob = jobObjId => {
   return async dispatch => {
     try {
