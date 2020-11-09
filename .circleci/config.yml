@@ -7,5 +7,7 @@ jobs:
       - checkout
       - run: echo "yarn installing"
       - run: yarn
+      - run: echo "cp config file"
+      - run: cp ./src/config.example.js ./src/config.js
       - run: echo "yarn run build"
       - run: yarn run build
