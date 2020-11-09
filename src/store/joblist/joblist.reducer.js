@@ -5,7 +5,6 @@ const initialState = {
 };
 
 const jobListReducer = (state = initialState, action) => {
-  let newState;
   switch (action.type) {
     case jobListTypes.SET_JOBS:
       return { ...state, list: action.jobs };
