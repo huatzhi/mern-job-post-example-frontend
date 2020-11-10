@@ -22,7 +22,7 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
-            ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no root@45.77.246.99 'sh deploy-frontend.sh'
+            ssh root@45.77.246.99 'sh deploy-frontend.sh'
 
 # workflows:
 #   version: 2
