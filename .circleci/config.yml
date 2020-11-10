@@ -11,3 +11,6 @@ jobs:
       - run: cp ./src/config.example.js ./src/config.js
       - run: echo "yarn run build"
       - run: yarn run build
+  deployment:
+    commands:
+      - ssh root@45.77.246.99:9000 'sh deploy-frontend.sh'
