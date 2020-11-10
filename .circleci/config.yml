@@ -11,10 +11,6 @@ jobs:
       - run: cp ./src/config.example.js ./src/config.js
       - run: echo "yarn run build"
       - run: yarn run build
-  deploy:
-    machine:
-      enabled: true
-    steps:
       - run:
           name: Deploy Over SSH
           command: |
