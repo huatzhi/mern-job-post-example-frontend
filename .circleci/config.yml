@@ -20,7 +20,7 @@ jobs:
       - run: echo "yarn run build"
       - run: yarn run build
 
-workflow:
+workflows:
   version: 2
   build-and-deploy:
     # - build
