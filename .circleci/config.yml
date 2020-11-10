@@ -16,8 +16,6 @@ jobs:
       - run: cp ./src/config.example.js ./src/config.js
       - run: echo "yarn run build"
       - run: yarn run build
-      - run: mkdir ~/.ssh
-      - run: touch ~/.ssh/known_hosts
       - run:
           name: Fix ssh Could not resolve hostname
           command: |
