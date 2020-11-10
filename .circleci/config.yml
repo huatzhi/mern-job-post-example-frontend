@@ -9,20 +9,20 @@ jobs:
     docker:
       - image: circleci/node:15.1
     steps:
-      - checkout
-      - run: echo "yarn installing"
-      - run: yarn
-      - run: echo "cp config file"
-      - run: cp ./src/config.example.js ./src/config.js
-      - run: echo "yarn run build"
-      - run: yarn run build
+      # - checkout
+      # - run: echo "yarn installing"
+      # - run: yarn
+      # - run: echo "cp config file"
+      # - run: cp ./src/config.example.js ./src/config.js
+      # - run: echo "yarn run build"
+      # - run: yarn run build
       - add_ssh_keys:
           fingerprints:
             - '7c:3e:38:77:58:00:50:0f:95:f8:97:17:66:86:0f:e3'
       - run:
           name: Deploy Over SSH
           command: |
-            ssh root@45.77.246.99 'sh deploy-frontend.sh'
+            ssh -o StrictHostKeyChecking=no root@45.77.246.99 'sh deploy-frontend.sh'
 
 # workflows:
 #   version: 2
@@ -32,4 +32,4 @@ jobs:
 #       requires:
 #         - build
 
-#
+# ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no root@45.77.246.99 'sh deploy-frontend.sh'
