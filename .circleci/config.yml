@@ -14,4 +14,4 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
-            ssh root@45.77.246.99:9000 'sh deploy-frontend.sh'
+            ssh root@45.77.246.99 'sh deploy-frontend.sh'
