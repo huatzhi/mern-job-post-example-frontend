@@ -14,4 +14,4 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
-            ssh root@45.77.246.99 'sh deploy-frontend.sh'
+            ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no root@45.77.246.99 'sh deploy-frontend.sh'
