@@ -1,5 +1,6 @@
 import React from 'react'
-import { Form, Input, Button, notification, Space } from 'antd'
+import { Form, Input, Button, notification, Space, Upload, message } from 'antd'
+import { InboxOutlined } from '@ant-design/icons'
 
 import './CreateJobForm.styles.css'
 import requests from '../../services/requests'
@@ -11,6 +12,7 @@ const CreateJobForm = () => {
   const [form] = Form.useForm()
   const dispatch = useDispatch()
   const { name } = useSelector((state) => state.auth)
+  const { Dragger } = Upload
 
   const onFinish = async (formData) => {
     console.log('formData', formData)
@@ -42,6 +44,27 @@ const CreateJobForm = () => {
     dispatch(SHOW_JOB_DETAIL(job))
   }
 
+  const draggerProps = {
+    accept: '.txt',
+    showUploadList: false,
+    beforeUpload: (file) => {
+      const reader = new FileReader()
+
+      reader.onload = (e) => {
+        if (!e || !e.target || !e.target.result) {
+          message.error('Failed to read file or the file is empty.')
+          return false
+        }
+        form.setFieldsValue({ description: e.target.result })
+        message.success('Job description is successfully imported!')
+      }
+      reader.readAsText(file)
+
+      // Prevent upload
+      return false
+    },
+  }
+
   return (
     <>
       <Form form={form} name="create-job" onFinish={onFinish} layout="vertical">
@@ -68,6 +91,18 @@ const CreateJobForm = () => {
             placeholder="Insert your job description here."
             rows={20}
           />
+        </Form.Item>
+        <Form.Item>
+          <Dragger {...draggerProps}>
+            <p className="ant-upload-drag-icon">
+              <InboxOutlined />
+            </p>
+            <p className="ant-upload-text">
+              Click or drag file to this area to autocomplete job description
+              field
+            </p>
+            <p className="ant-upload-hint">Support single .txt file only</p>
+          </Dragger>
         </Form.Item>
         <Space size="middle">
           <Form.Item>
